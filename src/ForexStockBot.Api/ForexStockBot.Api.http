@@ -1,0 +1,6 @@
+@ForexStockBot.Api_HostAddress = http://localhost:5137
+
+GET {{ForexStockBot.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
