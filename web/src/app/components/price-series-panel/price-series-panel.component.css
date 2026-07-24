@@ -1,0 +1,127 @@
+.price-series-panel {
+  padding: 10px;
+}
+
+h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+h3 {
+  margin: 15px 0 10px 0;
+  color: #555;
+  font-size: 16px;
+}
+
+.form-section {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.form-group label {
+  min-width: 80px;
+  font-weight: 500;
+  color: #666;
+}
+
+.form-group input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  flex: 1;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.data-table thead {
+  background-color: #f5f5f5;
+}
+
+.data-table th {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+  font-weight: 600;
+  color: #333;
+}
+
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #0066cc;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0052a3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.loading,
+.error-message,
+.success-message {
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+.loading {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}

@@ -1,0 +1,80 @@
+<div class="price-series-panel">
+  <h2>Price Series Management</h2>
+
+  <div class="form-section">
+    <h3>Query Price Series</h3>
+    <div class="form-group">
+      <label>Symbol:</label>
+      <input [(ngModel)]="searchSymbol" placeholder="e.g., EURUSD" />
+      <button (click)="getPriceSeries()" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3>Add New Price Series</h3>
+    <div class="form-group">
+      <label>Symbol:</label>
+      <input [(ngModel)]="newPriceSeries.symbol" placeholder="e.g., EURUSD" />
+    </div>
+    <div class="form-group">
+      <label>Type:</label>
+      <input [(ngModel)]="newPriceSeries.type" placeholder="e.g., daily" />
+    </div>
+    <div class="form-group">
+      <label>Open:</label>
+      <input [(ngModel)]="newPriceSeries.open" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+      <label>High:</label>
+      <input [(ngModel)]="newPriceSeries.high" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+      <label>Low:</label>
+      <input [(ngModel)]="newPriceSeries.low" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+      <label>Close:</label>
+      <input [(ngModel)]="newPriceSeries.close" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+      <label>Volume:</label>
+      <input [(ngModel)]="newPriceSeries.volume" type="number" />
+    </div>
+    <button (click)="addPriceSeries()" class="btn btn-success">Add Price Series</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <div *ngIf="!loading && priceSeries.length > 0" class="results">
+    <h3>Results</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Type</th>
+          <th>Timestamp</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ps of priceSeries">
+          <td>{{ ps.symbol }}</td>
+          <td>{{ ps.type }}</td>
+          <td>{{ ps.timestamp | date: 'short' }}</td>
+          <td>{{ ps.open | number: '1.2-5' }}</td>
+          <td>{{ ps.high | number: '1.2-5' }}</td>
+          <td>{{ ps.low | number: '1.2-5' }}</td>
+          <td>{{ ps.close | number: '1.2-5' }}</td>
+          <td>{{ ps.volume | number: '1.0-0' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+</div>

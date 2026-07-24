@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\ForexStockBot.Api.props" />
-</Project>

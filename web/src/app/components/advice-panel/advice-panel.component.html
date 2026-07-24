@@ -1,0 +1,39 @@
+<div class="advice-panel">
+  <h2>Trading Advice</h2>
+
+  <div class="form-section">
+    <h3>Get Advice</h3>
+    <div class="form-group">
+      <label>Symbol:</label>
+      <input [(ngModel)]="searchSymbol" placeholder="e.g., EURUSD" />
+      <button (click)="getAdvice()" class="btn btn-primary">Get Advice</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading advice...</div>
+
+  <div *ngIf="!loading && advice.length > 0" class="results">
+    <h3>Advice Results</h3>
+    <div class="advice-cards">
+      <div *ngFor="let adv of advice" class="advice-card" [ngClass]="'decision-' + adv.decision.toLowerCase()">
+        <div class="advice-header">
+          <span class="decision-badge">{{ adv.decision.toUpperCase() }}</span>
+          <span class="symbol">{{ adv.symbol }}</span>
+        </div>
+        <div class="advice-content">
+          <p><strong>Reason:</strong> {{ adv.reason }}</p>
+          <p><strong>Label:</strong> {{ adv.label }}</p>
+          <p><strong>Score:</strong> {{ adv.score | number: '1.2-4' }}</p>
+          <p><strong>Provider:</strong> {{ adv.provider }}</p>
+          <p><strong>Timestamp:</strong> {{ adv.timestamp | date: 'medium' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && advice.length === 0 && !error" class="empty-state">
+    No advice available. Search for a symbol to get advice.
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</div>

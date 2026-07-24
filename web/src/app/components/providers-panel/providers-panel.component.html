@@ -1,0 +1,19 @@
+<div class="providers-panel">
+  <h2>Available Providers</h2>
+  <button (click)="loadProviders()" class="btn btn-primary">Refresh Providers</button>
+
+  <div *ngIf="loading" class="loading">Loading providers...</div>
+
+  <div *ngIf="!loading && providers.length > 0" class="providers-grid">
+    <div *ngFor="let provider of providers" class="provider-card">
+      <div class="provider-name">{{ provider.name }}</div>
+      <div class="provider-id">ID: {{ provider.id }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && providers.length === 0" class="empty-state">
+    No providers available. Click Refresh to load.
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</div>
