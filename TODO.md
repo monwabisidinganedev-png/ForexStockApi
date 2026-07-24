@@ -2,3 +2,4 @@
 - [x] Update DiagnosticsService.cs to use GetProvidersAsync() instead of GetProviders()
 - [x] Test the changes by building the project
 - [x] Fix dependency injection scope issue by changing IMarketDataProviderFactory to scoped
+Test
