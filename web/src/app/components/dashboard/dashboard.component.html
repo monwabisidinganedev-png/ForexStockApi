@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Forex Stock API Dashboard</h1>
+    <div class="header-actions">
+      <button (click)="loadHealth()" class="btn btn-primary">Check Health</button>
+      <button (click)="toggleMockMode()" class="btn" [ngClass]="mockEnabled ? 'btn-danger' : 'btn-success'">
+        Mock Mode: {{ mockEnabled ? 'ON' : 'OFF' }}
+      </button>
+    </div>
+  </header>
+
+  <div class="status-bar" *ngIf="health">
+    <div class="status-item" [ngClass]="health.apiHealthy ? 'healthy' : 'unhealthy'">
+      <span class="status-label">API:</span>
+      <span class="status-value">{{ health.apiHealthy ? '✓ Healthy' : '✗ Unhealthy' }}</span>
+    </div>
+    <div class="status-item" [ngClass]="health.databaseHealthy ? 'healthy' : 'unhealthy'">
+      <span class="status-label">Database:</span>
+      <span class="status-value">{{ health.databaseHealthy ? '✓ Healthy' : '✗ Unhealthy' }}</span>
+    </div>
+  </div>
+
+  <div class="tabs-container">
+    <div class="tab-buttons">
+      <button *ngFor="let tab of tabs" (click)="currentTab = tab"
+              class="tab-btn" [class.active]="currentTab === tab">
+        {{ tab }}
+      </button>
+    </div>
+
+    <div class="tab-content">
+      <div *ngIf="currentTab === 'Providers'" class="tab-pane">
+        <app-providers-panel></app-providers-panel>
+      </div>
+
+      <div *ngIf="currentTab === 'Price Series'" class="tab-pane">
+        <app-price-series-panel></app-price-series-panel>
+      </div>
+
+      <div *ngIf="currentTab === 'Predictions'" class="tab-pane">
+        <app-predictions-panel></app-predictions-panel>
+      </div>
+
+      <div *ngIf="currentTab === 'Advice'" class="tab-pane">
+        <app-advice-panel></app-advice-panel>
+      </div>
+
+      <div *ngIf="currentTab === 'Provider State'" class="tab-pane">
+        <app-provider-state-panel></app-provider-state-panel>
+      </div>
+
+      <div *ngIf="currentTab === 'Diagnostics'" class="tab-pane">
+        <app-diagnostics-panel></app-diagnostics-panel>
+      </div>
+    </div>
+  </div>
+</div>

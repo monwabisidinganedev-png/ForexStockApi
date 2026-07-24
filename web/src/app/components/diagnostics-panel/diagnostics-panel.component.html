@@ -1,0 +1,15 @@
+<div class="diagnostics-panel">
+  <h2>System Diagnostics</h2>
+  <button (click)="runDiagnostics()" class="btn btn-primary">Run Diagnostics</button>
+
+  <div *ngIf="loading" class="loading">Running diagnostics...</div>
+
+  <div *ngIf="!loading && diagnostics" class="results">
+    <h3>Diagnostics Results</h3>
+    <div class="diagnostics-content">
+      <pre>{{ formatDiagnostics() }}</pre>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</div>

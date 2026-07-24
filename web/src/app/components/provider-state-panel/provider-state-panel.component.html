@@ -1,0 +1,55 @@
+<div class="provider-state-panel">
+  <h2>Provider State Management</h2>
+
+  <button (click)="loadAllProviderStates()" class="btn btn-primary">Refresh All States</button>
+
+  <div *ngIf="loading" class="loading">Loading provider states...</div>
+
+  <div *ngIf="!loading && providerStates.length > 0" class="results">
+    <h3>Provider States</h3>
+    <div class="state-cards">
+      <div *ngFor="let state of providerStates" class="state-card" [ngClass]="state.success ? 'success' : 'failed'">
+        <div class="state-header">
+          <h4>{{ state.provider }}</h4>
+          <span class="status-badge" [ngClass]="state.success ? 'success' : 'failed'">
+            {{ state.success ? '✓ Healthy' : '✗ Failed' }}
+          </span>
+        </div>
+        <div class="state-content">
+          <p><strong>Last Checked:</strong> {{ state.lastChecked | date: 'medium' }}</p>
+          <p><strong>Message:</strong> {{ state.message }}</p>
+          <p *ngIf="state.statusCode"><strong>Status Code:</strong> {{ state.statusCode }}</p>
+          <p *ngIf="state.rateLimitRemaining !== null"><strong>Rate Limit Remaining:</strong> {{ state.rateLimitRemaining }}</p>
+          <p *ngIf="state.rateLimitReset"><strong>Rate Limit Reset:</strong> {{ state.rateLimitReset | date: 'medium' }}</p>
+          <p><strong>Fallback to Mock:</strong> {{ state.fallbackToMock ? 'Yes' : 'No' }}</p>
+          <button (click)="editState(state)" class="btn btn-secondary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && selectedState" class="edit-section">
+    <h3>Edit Provider State</h3>
+    <div class="form-group">
+      <label>Provider:</label>
+      <input [(ngModel)]="selectedState.provider" />
+    </div>
+    <div class="form-group">
+      <label>Success:</label>
+      <input [(ngModel)]="selectedState.success" type="checkbox" />
+    </div>
+    <div class="form-group">
+      <label>Message:</label>
+      <textarea [(ngModel)]="selectedState.message"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Fallback to Mock:</label>
+      <input [(ngModel)]="selectedState.fallbackToMock" type="checkbox" />
+    </div>
+    <button (click)="updateState()" class="btn btn-success">Update State</button>
+    <button (click)="selectedState = null" class="btn btn-cancel">Cancel</button>
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+</div>
