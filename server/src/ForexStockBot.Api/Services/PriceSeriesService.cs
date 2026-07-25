@@ -10,7 +10,6 @@ namespace ForexStockBot.Api.Services
     public interface IPriceSeriesService
     {
         Task<IEnumerable<PriceSeriesDto>> GetBySymbolAsync(string symbol);
-        Task AddAsync(PriceSeriesDto dto);
     }
 
     public class PriceSeriesService : IPriceSeriesService
@@ -20,10 +19,12 @@ namespace ForexStockBot.Api.Services
         {
             _repo = repo;
         }
+
         public async Task<IEnumerable<PriceSeriesDto>> GetBySymbolAsync(string symbol)
         {
             var data = await _repo.GetBySymbolAsync(symbol);
-            return data.Select(p => new PriceSeriesDto
+            
+            var priceSeries = data.Select(p => new PriceSeries
             {
                 Id = p.Id,
                 Symbol = p.Symbol,
@@ -35,21 +36,10 @@ namespace ForexStockBot.Api.Services
                 Close = p.Close,
                 Volume = p.Volume
             });
-        }
-        public async Task AddAsync(PriceSeriesDto dto)
-        {
-            var entity = new PriceSeries
-            {
-                Symbol = dto.Symbol,
-                Type = dto.Type,
-                Timestamp = dto.Timestamp,
-                Open = dto.Open,
-                High = dto.High,
-                Low = dto.Low,
-                Close = dto.Close,
-                Volume = dto.Volume
-            };
-            await _repo.AddAsync(entity);
+
+            await _repo.AddAsync(priceSeries.First());
+
+            return (IEnumerable<PriceSeriesDto>) priceSeries;
         }
     }
 }

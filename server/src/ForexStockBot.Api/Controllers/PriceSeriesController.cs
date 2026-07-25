@@ -28,15 +28,5 @@ namespace ForexStockBot.Api.Controllers
             var data = await _service.GetBySymbolAsync(symbol);
             return Ok(data);
         }
-
-        /// <summary>
-        /// Add a new price series entry.
-        /// </summary>
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] PriceSeriesDto dto)
-        {
-            await _service.AddAsync(dto);
-            return Ok();
-        }
     }
 }
